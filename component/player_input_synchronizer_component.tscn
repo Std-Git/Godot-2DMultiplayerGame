@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dql0e0dodj4nm"]
+
+[ext_resource type="Script" uid="uid://7lk6w7sa55md" path="res://component/player_input_synchronizer_component.gd" id="1_i0cih"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ieqh2"]
+properties/0/path = NodePath(".:movement_vector")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:aim_vector")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:is_attack_pressed")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+
+[node name="PlayerInputSynchronizerComponent" type="MultiplayerSynchronizer" unique_id=1435311936]
+root_path = NodePath(".")
+replication_config = SubResource("SceneReplicationConfig_ieqh2")
+script = ExtResource("1_i0cih")

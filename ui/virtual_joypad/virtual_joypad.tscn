@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bmsdixxf6xgrl"]
+
+[ext_resource type="Texture2D" uid="uid://c5ugap8g03l73" path="res://assets/ui/HUD.png" id="1_7rpbs"]
+[ext_resource type="Script" uid="uid://cm4lmdbje7be7" path="res://ui/virtual_joypad/knob.gd" id="2_5l44c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u46qx"]
+atlas = ExtResource("1_7rpbs")
+region = Rect2(374, 6, 52, 52)
+
+[node name="VirtualJoypad" type="Control" unique_id=1257004]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Stick" type="Control" parent="." unique_id=1935561623]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 65.0
+offset_top = -80.0
+offset_right = 65.0
+offset_bottom = -80.0
+grow_vertical = 0
+
+[node name="Knob" type="TouchScreenButton" parent="Stick" unique_id=661600098]
+position = Vector2(-26, -26)
+texture_normal = SubResource("AtlasTexture_u46qx")
+script = ExtResource("2_5l44c")

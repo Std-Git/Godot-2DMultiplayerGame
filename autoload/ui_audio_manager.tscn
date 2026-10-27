@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dulpu11q12sqy"]
+
+[ext_resource type="Script" uid="uid://boeiq3v7pc40e" path="res://autoload/ui_audio_manager.gd" id="1_knglf"]
+[ext_resource type="AudioStream" uid="uid://cac2qnq6yd6dy" path="res://assets/audio/button.wav" id="2_mv3kq"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i3rpe"]
+random_pitch = 1.096825
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("2_mv3kq")
+
+[node name="UIAudioManager" type="Node" unique_id=994052026]
+process_mode = 3
+script = ExtResource("1_knglf")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=324751802]
+stream = SubResource("AudioStreamRandomizer_i3rpe")
+volume_db = -2.0
+bus = &"sfx"
