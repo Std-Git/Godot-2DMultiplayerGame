@@ -41,6 +41,11 @@ theme_override_constants/outline_size = 4
 text = "PRESS R TO READY UP"
 horizontal_alignment = 1
 
+[node name="ReadyButton" type="Button" parent="MarginContainer/ReadyUpContainer" unique_id=1410535578]
+unique_name_in_owner = true
+layout_mode = 2
+text = "READY UP"
+
 [node name="ReadyCountLabel" type="Label" parent="MarginContainer/ReadyUpContainer" unique_id=1676310811]
 unique_name_in_owner = true
 layout_mode = 2

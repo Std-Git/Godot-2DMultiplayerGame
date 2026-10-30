@@ -3,9 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://c5ugap8g03l73" path="res://assets/ui/HUD.png" id="1_7rpbs"]
 [ext_resource type="Script" uid="uid://cm4lmdbje7be7" path="res://ui/virtual_joypad/knob.gd" id="2_5l44c"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u46qx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5l44c"]
 atlas = ExtResource("1_7rpbs")
 region = Rect2(374, 6, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rpbs"]
+atlas = ExtResource("1_7rpbs")
+region = Rect2(50, 210, 12, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5l44c"]
+radius = 16.0
 
 [node name="VirtualJoypad" type="Control" unique_id=1257004]
 layout_mode = 3
@@ -14,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Stick" type="Control" parent="." unique_id=1935561623]
 layout_mode = 1
@@ -28,5 +36,24 @@ grow_vertical = 0
 
 [node name="Knob" type="TouchScreenButton" parent="Stick" unique_id=661600098]
 position = Vector2(-26, -26)
-texture_normal = SubResource("AtlasTexture_u46qx")
+texture_normal = SubResource("AtlasTexture_5l44c")
+visibility_mode = 1
 script = ExtResource("2_5l44c")
+
+[node name="Pause" type="Control" parent="." unique_id=1843682380]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -39.0
+offset_top = 30.0
+offset_right = -39.0
+offset_bottom = 30.0
+grow_horizontal = 0
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Pause" unique_id=1225908787]
+position = Vector2(-6, -6)
+texture_normal = SubResource("AtlasTexture_7rpbs")
+shape = SubResource("CircleShape2D_5l44c")
+action = "pause"
+visibility_mode = 1

@@ -37,8 +37,15 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("lobby_ready"):
-		request_peer_ready.rpc_id(MultiplayerPeer.TARGET_PEER_SERVER)
+		request_lobby_ready()
 		get_viewport().set_input_as_handled()
+
+
+# 新增：公共准备方法，供按键和手机按钮共同调用
+func request_lobby_ready() -> void:
+	if is_lobby_closed or multiplayer.multiplayer_peer is OfflineMultiplayerPeer:
+		return
+	request_peer_ready.rpc_id(MultiplayerPeer.TARGET_PEER_SERVER)
 
 func close_lobby():
 	is_lobby_closed = true

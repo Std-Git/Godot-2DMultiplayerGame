@@ -11,6 +11,7 @@ extends CanvasLayer
 @onready var ready_count_label: Label = %ReadyCountLabel
 @onready var ready_up_container: VBoxContainer = $MarginContainer/ReadyUpContainer
 @onready var round_info_container: VBoxContainer = $MarginContainer/RoundInfoContainer
+@onready var ready_button: Button = %ReadyButton
 
 @export var lobby_manager: LobbyManager
 
@@ -19,12 +20,21 @@ func _ready() -> void:
 	lobby_manager.self_peer_ready.connect(_on_self_peer_ready)
 	lobby_manager.lobby_closed.connect(_on_lobby_closed)
 	lobby_manager.peer_ready_state_changed.connect(_on_peer_ready_state_changed)
+	ready_button.pressed.connect(_on_ready_button_pressed)
 	
 	var is_single_player:= multiplayer.multiplayer_peer is OfflineMultiplayerPeer
 	ready_up_container.visible = !is_single_player
 	round_info_container.visible = is_single_player
 	ready_label.visible = false
-	not_ready_label.visible = true
+	# 新增：根据设备类型决定显示文字还是按钮
+	if DisplayServer.is_touchscreen_available():
+		# 触摸屏设备（手机）隐藏文字，显示按钮
+		not_ready_label.visible = false
+		ready_button.visible = true
+	else:
+		# 非触摸屏设备（电脑）保持原样
+		not_ready_label.visible = true
+		ready_button.visible = false
 
 func _process(_delta: float) -> void:
 	timer_label.text = str(ceili(enemy_manager.get_round_time_remaining()))
@@ -51,6 +61,7 @@ func _on_health_changed(current_health: int, max_health: int):
 func _on_self_peer_ready():
 	ready_label.visible = true
 	not_ready_label.visible = false
+	ready_button.visible = false
 
 func _on_lobby_closed():
 	ready_up_container.visible = false
@@ -58,3 +69,6 @@ func _on_lobby_closed():
 
 func _on_peer_ready_state_changed(ready_count: int, total_count: int):
 	ready_count_label.text = "%s/%s READY" % [ready_count, total_count]
+
+func _on_ready_button_pressed() -> void:
+	lobby_manager.request_lobby_ready()
